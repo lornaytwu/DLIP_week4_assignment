@@ -45,10 +45,11 @@ print(tokens)
 # Your code here:
 # -----------------------------------------------
 def tokenize(string: str) -> list:
-    # Tokenize the string, remove punctuation, convert to lowercase, and return unique words in alphabetical order
-    tokens = [word.strip('.,!?;:').lower() for word in string.split()]
-    unique_tokens = sorted(set(tokens))
-    return unique_tokens
+    cleaned = "".join(
+        char if char.isalnum() or char.isspace() else " "
+        for char in string.lower()
+    )
+    return list(dict.fromkeys(cleaned.split()))
 
 
 # -----------------------------------------------
